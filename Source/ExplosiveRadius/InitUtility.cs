@@ -9,12 +9,12 @@ namespace CF_ExplosiveRadius;
 [StaticConstructorOnStartup]
 public static class InitUtility
 {
-    public static readonly HashSet<ThingDef> PatchedExplosives;
+    private static readonly HashSet<ThingDef> patchedExplosives;
 
     static InitUtility()
     {
         new Harmony("com.colinfang.ExplosiveRadius").PatchAll();
-        PatchedExplosives = [];
+        patchedExplosives = [];
         foreach (var allDef in DefDatabase<ThingDef>.AllDefs)
         {
             if (allDef.specialDisplayRadius != 0f)
@@ -29,7 +29,7 @@ public static class InitUtility
             }
 
             allDef.specialDisplayRadius = compProperties.explosiveRadius;
-            PatchedExplosives.Add(allDef);
+            patchedExplosives.Add(allDef);
         }
     }
 
@@ -37,7 +37,7 @@ public static class InitUtility
         allowedGameStates = AllowedGameStates.PlayingOnMap)]
     public static void LogPatchedExplosives()
     {
-        foreach (var patchExplosives in PatchedExplosives)
+        foreach (var patchExplosives in patchedExplosives)
         {
             Log.Message($"PatchedExplosives: {patchExplosives}");
         }

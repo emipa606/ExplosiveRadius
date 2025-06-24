@@ -5,9 +5,8 @@ using Verse;
 
 namespace CF_ExplosiveRadius;
 
-[HarmonyPatch(typeof(ThingComp))]
-[HarmonyPatch("PostDrawExtraSelectionOverlays")]
-public static class Patch_ThingComp_PostDrawExtraSelectionOverlays
+[HarmonyPatch(typeof(ThingComp), nameof(ThingComp.PostDrawExtraSelectionOverlays))]
+public static class ThingComp_PostDrawExtraSelectionOverlays
 {
     public static void Postfix(ThingComp __instance)
     {
