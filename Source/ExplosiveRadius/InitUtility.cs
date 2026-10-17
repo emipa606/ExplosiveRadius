@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using HarmonyLib;
 using LudeonTK;
 using RimWorld;
@@ -13,7 +14,7 @@ public static class InitUtility
 
     static InitUtility()
     {
-        new Harmony("com.colinfang.ExplosiveRadius").PatchAll();
+        new Harmony("com.colinfang.ExplosiveRadius").PatchAll(Assembly.GetExecutingAssembly());
         patchedExplosives = [];
         foreach (var allDef in DefDatabase<ThingDef>.AllDefs)
         {
